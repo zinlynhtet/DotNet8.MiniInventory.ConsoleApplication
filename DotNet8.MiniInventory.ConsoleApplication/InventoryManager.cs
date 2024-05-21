@@ -33,7 +33,7 @@ public class InventoryManager
         }
 
         var table = new Table(TableConfiguration.Unicode())
-                        .From(_items);
+            .From(_items);
 
         Console.WriteLine(table.ToString());
     }
