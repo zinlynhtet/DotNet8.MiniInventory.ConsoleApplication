@@ -1,4 +1,6 @@
-﻿public class InventoryManager
+﻿using BetterConsoleTables;
+
+public class InventoryManager
 {
     private List<InventoryItem> _items;
     private int _nextId;
@@ -24,11 +26,16 @@
 
     public void ListItems()
     {
-        Console.WriteLine("Inventory Items:");
-        foreach (var item in _items)
+        if (!_items.Any())
         {
-            Console.WriteLine($"Id: {item.Id}, Name: {item.Name}, Quantity: {item.Quantity}, Price: {item.Price}");
+            Console.WriteLine("No items found.");
+            return;
         }
+
+        var table = new Table(TableConfiguration.Unicode())
+                        .From(_items);
+
+        Console.WriteLine(table.ToString());
     }
 
     public void UpdateItem(int id, string name, int quantity, decimal price)
