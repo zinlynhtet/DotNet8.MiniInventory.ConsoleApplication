@@ -41,7 +41,7 @@ public class InventoryManager
     public void UpdateItem(int id, string name, int quantity, decimal price)
     {
         var item = _items.FirstOrDefault(i => i.Id == id);
-        if (item == null)
+        if (item is null)
         {
             Console.WriteLine("Item not found.");
             return;
@@ -56,7 +56,7 @@ public class InventoryManager
     public void DeleteItem(int id)
     {
         var item = _items.FirstOrDefault(i => i.Id == id);
-        if (item == null)
+        if (item is null)
         {
             Console.WriteLine("Item not found.");
             return;
