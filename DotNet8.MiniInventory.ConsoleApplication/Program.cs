@@ -1,4 +1,6 @@
-﻿var manager = new InventoryManager();
+﻿using DotNet8.MiniInventory.ConsoleApplication;
+
+var manager = new InventoryManager();
 bool exit = false;
 
 while (!exit)
@@ -37,19 +39,13 @@ while (!exit)
 static void AddItem(InventoryManager manager)
 {
     Console.Write("Enter item name: ");
-    string name = Console.ReadLine()!;
+    var name = Console.ReadLine()!;
+
     Console.Write("Enter quantity: ");
-    if (!int.TryParse(Console.ReadLine(), out int quantity))
-    {
-        Console.WriteLine("Invalid quantity. Please enter a valid number.");
-        return;
-    }
+    var quantity = Console.ReadLine().ToInt();
+
     Console.Write("Enter price: ");
-    if (!decimal.TryParse(Console.ReadLine(), out decimal price))
-    {
-        Console.WriteLine("Invalid price. Please enter a valid number.");
-        return;
-    }
+    var price = Console.ReadLine().ToDecimal();
 
     manager.AddItem(name, quantity, price);
 }
@@ -57,25 +53,16 @@ static void AddItem(InventoryManager manager)
 static void UpdateItem(InventoryManager manager)
 {
     Console.Write("Enter item ID to update: ");
-    if (!int.TryParse(Console.ReadLine(), out int id))
-    {
-        Console.WriteLine("Invalid ID. Please enter a valid number.");
-        return;
-    }
+    var id = Console.ReadLine().ToInt();
+
     Console.Write("Enter new name: ");
-    string name = Console.ReadLine()!;
+    var name = Console.ReadLine()!;
+
     Console.Write("Enter new quantity: ");
-    if (!int.TryParse(Console.ReadLine(), out int quantity))
-    {
-        Console.WriteLine("Invalid quantity. Please enter a valid number.");
-        return;
-    }
+    var quantity = Console.ReadLine().ToInt();
+
     Console.Write("Enter new price: ");
-    if (!decimal.TryParse(Console.ReadLine(), out decimal price))
-    {
-        Console.WriteLine("Invalid price. Please enter a valid number.");
-        return;
-    }
+    var price = Console.ReadLine().ToDecimal();
 
     manager.UpdateItem(id, name, quantity, price);
 }
@@ -83,10 +70,7 @@ static void UpdateItem(InventoryManager manager)
 static void DeleteItem(InventoryManager manager)
 {
     Console.Write("Enter item ID to delete: ");
-    if (!int.TryParse(Console.ReadLine(), out int id))
-    {
-        Console.WriteLine("Invalid ID. Please enter a valid number.");
-        return;
-    }
+    var id = Console.ReadLine().ToInt();
+
     manager.DeleteItem(id);
 }
